@@ -1,0 +1,51 @@
+<html>
+<head>
+</head>
+<body>
+<div>
+	<ul id="my-list">
+		<li><span>Förnamn</span><span>Efternamn</span><span>Email</span></li>
+	</ul>
+</div>
+<script> 
+function printToList (u) {
+	var parentNode = document.getElementById('my-list');
+	var childNode = document.createElement("LI"); 
+	childNode.innerHTML = '<li><span>'+u.firstName+'</span><span>'+u.lastName+'</span><span>'+u.email+'</span></li>';
+	parentNode.appendChild(childNode);
+}
+
+function getOverWriteElement() {
+	return { 'firstName':'Overwrite', 'lastName': 'Overwritesson', 'email': 'over@write.se' };
+}
+	
+(function(){
+	let collection = [
+		{ 'firstName':'Anna', 'lastName': 'Sotare', 'email': 'anna@soteriet.se' },
+		{ 'firstName':'Janne', 'lastName': 'Snickare', 'email': 'janne@snickeriet.se' },
+	];
+
+	collection.map(function(u, index) { 
+		u = getOverWriteElement();
+	});
+	
+	collection.map(u => printToList(u));
+	
+	for(var i=0;i<collection.length;i++){
+		collection[i] = getOverWriteElement();
+	}
+	
+	collection.map(u => printToList(u));
+})();
+</script>
+<style>
+	ul {
+		list-style: none;
+	}
+	span {
+		display: inline-block;
+		min-width: 200px;
+	}
+</style>
+</body>
+</html>
